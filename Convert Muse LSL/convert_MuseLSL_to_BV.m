@@ -43,6 +43,7 @@ for counter = 1:length(filenames) %Number of participants - if this is incorrect
     csvdata(:,1) = (1:length(csvdata)); %Create timestamps in datapoints
     current_name = strtok(current_name,'.'); %Remove filetype for saving
     
+    raw = eeg_load_xdf(filenames(counter).name)
     %Insert markers
     markers = []; %Clear markers variable
     markerindex = []; %Clear markers variable
