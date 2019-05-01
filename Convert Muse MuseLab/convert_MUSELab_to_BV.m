@@ -138,13 +138,6 @@ if segmented == 2
             [EEG.event(length(IXDATA.m_struct.i_times) + count).latency] = templatency; %Times of markers
         end 
         
-        %Center data and transform into microvolts
-        means = mean(EEG.data,2); %Determine means of each data point
-        for row = 1:size(means,1)
-            EEG.data(row,:) = EEG.data(row,:) - means(row); %Center data
-        end
-        EEG.data(:,:) =  EEG.data(:,:)*1.64498; %Convert to microvolts
-        
         %Save data as BVA
         cd('BV Data'); %Change directory to new BrainVision data location
         pop_writebva_seg_MUSELABMarkers(EEG, current_name); %This script converts the data

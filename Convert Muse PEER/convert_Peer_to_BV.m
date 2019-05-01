@@ -56,13 +56,6 @@ for counter = 1:length(filenames) %Number of participants - if this is incorrect
         [EEG.event(markcount).latency] = num2str(round(markers(2,markcount))); %Add time to structure
     end
     
-    %Center data and transform into microvolts
-    means = mean(EEG.data,2); %Determine means of each data point
-    for row = 1:size(means,1)
-        EEG.data(row,:) = EEG.data(row,:) - means(row); %Center data
-    end
-    EEG.data(:,:) =  EEG.data(:,:)*1.64498; %Convert to microvolts
-    
     %Save data as BVA
     cd('BV Data'); %Change directory to new BrainVision data location
     pop_writebva_Peer(EEG, current_name); %This script converts the data
